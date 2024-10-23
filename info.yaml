@@ -27,9 +27,9 @@ pinout:
   ui[2]: "q[2]"
   ui[3]: "q[3]"
   ui[4]: "m[0]"
-  ui[5]: "m[0]"
-  ui[6]: "m[0]"
-  ui[7]: "m[0]"
+  ui[5]: "m[1]"
+  ui[6]: "m[2]"
+  ui[7]: "m[3]"
 
   # Outputs
   uo[0]: "p[0]"
@@ -37,9 +37,9 @@ pinout:
   uo[2]: "p[0]"
   uo[3]: "p[0]"
   uo[4]: "p[0]"
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[5]: "p[0]"
+  uo[6]: "p[0]"
+  uo[7]: "p[0]"
 
   # Bidirectional pins
   uio[0]: ""
