@@ -17,8 +17,8 @@ module tt_um_a3_array_multiplier (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-    wire [3:0] = ui_in [7:4];
-    wire [3:0] = ui_in [3:0];
+    wire [3:0] m = ui_in [7:4];
+    wire [3:0] q = ui_in [3:0];
     wire [7:0] p;
 
     wire [3:0] m0,m1,m2,m3;
