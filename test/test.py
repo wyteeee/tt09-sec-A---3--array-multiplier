@@ -27,18 +27,41 @@ async def test_project(dut):
 
     # Set the input values you want to test
     dut.ui_in.value = 0x42
-    
+    dut.ui_in.value = 0x34
+    dut.ui_in.value = 0x56
+    dut.ui_in.value = 0x11
+    dut.ui_in.value = 0x09
 
     # Wait for one clock cycle to see the output values
     await ClockCycles(dut.clk, 1)
 
     # The following assersion is just an example of how to check the output values.
     # Change it to match the actual expected output of your module:
-    assert dut.uo_out.value == 0x88
+    assert dut.uo_out.value == 0x10
+    assert dut.uo_out.value == 0x78
+    assert dut.uo_out.value == 0x27
+    assert dut.uo_out.value == 0x46
+    assert dut.uo_out.value == 0x52
 
     dut.ui_in.value = 0x42
     await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0x88
+    assert dut.uo_out.value == 0x10
+
+    dut.ui_in.value = 0x34
+    await ClockCycles(dut.clk, 1)
+    assert dut.uo_out.value == 0x78
+
+    dut.ui_in.value = 0x56
+    await ClockCycles(dut.clk, 1)
+    assert dut.uo_out.value == 0x27
+
+    dut.ui_in.value = 0x11
+    await ClockCycles(dut.clk, 1)
+    assert dut.uo_out.value == 0x46
+
+    dut.ui_in.value = 0x09
+    await ClockCycles(dut.clk, 1)
+    assert dut.uo_out.value == 0x52
 
     # Keep testing the module by changing the input values, waiting for
     # one or more clock cycles, and asserting the expected output values.
