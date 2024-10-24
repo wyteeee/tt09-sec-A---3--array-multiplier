@@ -35,25 +35,34 @@ async def test_project(dut):
     # Change it to match the actual expected output of your module:
     
 
-    dut.ui_in.value = 0x05
+     dut.ui_in.value = 0x55  # Input A: 01010101
+    dut.uio_in.value = 0xAA  # Input B: 10101010
     await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0x0A
+    assert dut.uo_out.value == 0xFF  # Expected output for XOR pattern
 
-    dut.ui_in.value = 0x00
+    # Test case 2: All zeros in A
+    dut.ui_in.value = 0x00  # Input A: 00000000
+    dut.uio_in.value = 0xFF  # Input B: 11111111
+    await ClockCycles(dut.clk, 1)
+    assert dut.uo_out.value == 0xFF
+
+    # Test case 3: All zeros in B
+    dut.ui_in.value = 0xFF  # Input A: 11111111
+    dut.uio_in.value = 0x00  # Input B: 00000000
+    await ClockCycles(dut.clk, 1)
+    assert dut.uo_out.value == 0xFF
+
+    # Test case 4: Identical inputs
+    dut.ui_in.value = 0x33  # Input A: 00110011
+    dut.uio_in.value = 0x33  # Input B: 00110011
     await ClockCycles(dut.clk, 1)
     assert dut.uo_out.value == 0x00
 
-    dut.ui_in.value = 0x01
+    # Test case 5: Alternating bits
+    dut.ui_in.value = 0x0F  # Input A: 00001111
+    dut.uio_in.value = 0xF0  # Input B: 11110000
     await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0x02
-
-    dut.ui_in.value = 0x04
-    await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0x08
-
-    dut.ui_in.value = 0x08
-    await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0x10
+    assert dut.uo_out.value == 0xFF
 
     # Keep testing the module by changing the input values, waiting for
     # one or more clock cycles, and asserting the expected output values.
