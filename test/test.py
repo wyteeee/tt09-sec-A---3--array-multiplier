@@ -35,7 +35,7 @@ async def test_project(dut):
     # Change it to match the actual expected output of your module:
     
 
-     dut.ui_in.value = 0x55  # Input A: 01010101
+    dut.ui_in.value = 0x55  # Input A: 01010101
     dut.uio_in.value = 0xAA  # Input B: 10101010
     await ClockCycles(dut.clk, 1)
     assert dut.uo_out.value == 0xFF  # Expected output for XOR pattern
