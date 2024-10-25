@@ -35,10 +35,10 @@ async def test_project(dut):
     # Change it to match the actual expected output of your module:
     
 
-    dut.ui_in.value = 0x55 
+    dut.ui_in.value = 0x14 
     dut.uio_in.value = 0x11  
     await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0x19  
+    assert dut.uo_out.value == 0x04  
 
     # Test case 2: All zeros in A
     dut.ui_in.value = 0x11 # Input A: 00000000
