@@ -83,7 +83,7 @@ endmodule
     input b,
     input cin,
     output sum, 
-    output cout,
+    output cout
     );
     assign sum = a^b^cin;
     assign cout = (a&b)| (cin & a) |(cin & b);
