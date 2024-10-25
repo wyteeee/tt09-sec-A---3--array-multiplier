@@ -38,31 +38,31 @@ async def test_project(dut):
     dut.ui_in.value = 0x55 
     dut.uio_in.value = 0x11  
     await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0x66  
+    assert dut.uo_out.value == 25  
 
     # Test case 2: All zeros in A
-    dut.ui_in.value = 0x00  # Input A: 00000000
+    dut.ui_in.value = 0x11 # Input A: 00000000
     dut.uio_in.value = 0xFF 
     await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0xFF
+    assert dut.uo_out.value == 1
 
     # Test case 3: All zeros in B
-    dut.ui_in.value = 0xFF 
+    dut.ui_in.value = 0x26 
     dut.uio_in.value = 0x00  
     await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0xFF
+    assert dut.uo_out.value == 12
 
     # Test case 4: Identical inputs
     dut.ui_in.value = 0x33  # Input A: 00110011
     dut.uio_in.value = 0x33  # Input B: 00110011
     await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0x66
+    assert dut.uo_out.value == 9
 
     # Test case 5: Alternating bits
-    dut.ui_in.value = 0x0F  # Input A: 00001111
+    dut.ui_in.value = 0x78  # Input A: 00001111
     dut.uio_in.value = 0xF0  # Input B: 11110000
     await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0xFF
+    assert dut.uo_out.value == 56
 
     # Keep testing the module by changing the input values, waiting for
     # one or more clock cycles, and asserting the expected output values.
