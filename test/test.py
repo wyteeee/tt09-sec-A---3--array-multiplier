@@ -35,32 +35,33 @@ async def test_project(dut):
     # Change it to match the actual expected output of your module:
     
 
-    dut.ui_in.value = 0x14 
-    dut.uio_in.value = 0x11  
+    dut.ui_in.value = 0x1_4 
+      
     await ClockCycles(dut.clk, 1)
     assert dut.uo_out.value == 0x04  
-
+    # dut.uio_in.value = 0xFF 
+    
     # Test case 2: All zeros in A
-    dut.ui_in.value = 0x11 # Input A: 00000000
-    dut.uio_in.value = 0xFF 
+    dut.ui_in.value = 0x1_1 # Input A: 00000000
+    #dut.uio_in.value = 0xFF 
     await ClockCycles(dut.clk, 1)
     assert dut.uo_out.value == 1
 
     # Test case 3: All zeros in B
-    dut.ui_in.value = 0x26 
-    dut.uio_in.value = 0x00  
+    dut.ui_in.value = 0x2_6 
+    #dut.uio_in.value = 0x00  
     await ClockCycles(dut.clk, 1)
     assert dut.uo_out.value == 12
 
     # Test case 4: Identical inputs
-    dut.ui_in.value = 0x33  # Input A: 00110011
-    dut.uio_in.value = 0x33  # Input B: 00110011
+    dut.ui_in.value = 0x3_3  # Input A: 00110011
+    #dut.uio_in.value = 0x33  # Input B: 00110011
     await ClockCycles(dut.clk, 1)
     assert dut.uo_out.value == 9
 
     # Test case 5: Alternating bits
-    dut.ui_in.value = 0x78  # Input A: 00001111
-    dut.uio_in.value = 0xF0  # Input B: 11110000
+    dut.ui_in.value = 0x7_8  # Input A: 00001111
+    #dut.uio_in.value = 0xF0  # Input B: 11110000
     await ClockCycles(dut.clk, 1)
     assert dut.uo_out.value == 56
 
