@@ -78,14 +78,4 @@ module tt_um_a3_array_multiplier (
 wire _unused = &{ena, clk, rst_n, uio_in, 1'b0};
 
 endmodule
-    module full_adder (
-    input a,
-    input b,
-    input cin,
-    output sum, 
-    output cout
-    );
-    assign sum = a^b^cin;
-    assign cout = (a&b)| (cin &( a^ b));
-endmodule
-
+   
